@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="clone">
+  <head>
+    <meta charset="utf-8">
+    <title>Reddit Clone</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body ng-controller="firstController">
+    <header>
+<span>Reddit Clone Project</span>
+<input type= "text" ng-model="searchbox" name="searchbox">
+    </header>
+
+
+    <div ng-repeat="posts in post">
+      <h3>{{ posts.title }}</h3>
+      <h4>{{ posts.author }}</h4>
+      <img style="height: 100px; width: 150px" src= '{{ posts.image }}'/> 
+      <h4>{{ posts.date }}</h4>
+    </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
