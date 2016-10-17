@@ -8,31 +8,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
 </head>
 
-<body ng-controller="firstController" style="background-size:cover; background-repeat:no-repeat; background-image:url('https://images0.estately.net/1_785941_1_1454949789_636x435.jpg')">
+<body ng-controller="firstController">
+
     <header>
         <span style="margin:5px"> Reddit Clone Project</span>
     </header>
 
     <span style="color:white">Search <input style="margin-top:25px" type="text" ng-model="searchbox" name="searchbox"/></span>
-    <button id="newPost">Submit New Post</button>
+    <button id="newPost" ng-click="newPostForm = true">Submit New Post</button>
 
+    <form>
+        <span style="color:white; margin-left:15px">Order By:</span>
+        <select ng-model="selection">
+        <option value="rating">Rating</option>
+        <option value="date">Date</option>
+        <option value="title">Title</option>
+      </select>
+    </form>
+
+<!-- This is the hidden form for submitting new entries -->
+
+    <div ng-show="newPostForm">
+      <form id="newForm" ng-submit="submit()">
+        Title <input placeholder="Enter a title" type="text" required name="title" ng-model="newPost.title"><br>
+        Image URL <input placeholder="Enter an image URL" type="text" required name="image" ng-model="newPost.image"><br>
+        Author <input placeholder="Enter your name" type="text" required name="author" ng-model="newPost.author"><br>
+        Description <input placeholder="Describe your post" type="text" required name="description" ng-model="newPost.description"><br>
+        Date <input placeholder="Enter the Date" type="text" required name="date" ng-model="newPost.date"><br>
+        <input style="color:white; background-color:green" type="submit" class="button" value="Submit New Post" ng-mouseenter="changeColor={'background-color':'blue'}" ng-style="changeColor" ng-mouseleave="changeColor={'background-color': 'green'}" ng-click="newPostForm = false">
+      </form>
+    </div>
 
     <div style="margin:50px">
-        <div id="grad" ng-repeat="posts in post  | filter: searchbox" style="border: 1px solid black; margin:10px" ng-class="ng-enter">
+        <div id="grad" ng-repeat="posts in post  | orderBy: selection | filter: searchbox" style="border: 1px solid black; margin:10px" ng-class="ng-enter">
             <div>
-                <img ng-src='{{ posts.image }}' class=imgStyle>
+                <img ng-src='{{ posts.image }}' class=imgStyle alt= "{{posts.title}}">
             </div>
             <div class="panelStyle">
                 <div>
                     <p style="font-family:cursive; font-size:20px">{{ posts.title }}
                         <button id="upVote" ng-click="score = score + 1" ng-model="score">&#8593</button>
                         <button id="downVote" ng-click="score = score - 1" ng-model="score">&#8595</button>
-                        <span ng-class='{aboveZero: score > 0, atZero: score === 0, belowZero: score < 0}' ng-init="score=0">{{ score }}</span>
+                        <span name=rating; ng-class='{aboveZero: score > 0, atZero: score === 0, belowZero: score < 0}' ng-init="score=0">{{ score }}</span>
                     </p>
                 </div>
                 <h4> by {{ posts.author }}</h4>
                 <p>{{ posts.description }}</p>
                 <h4>published on {{ posts.date | date:'medium' }}</h4>
+                <button class="commentButton">Leave a Comment </button>
             </div>
         </div>
     </div>

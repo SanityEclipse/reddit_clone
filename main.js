@@ -1,7 +1,7 @@
 var app = angular.module("clone", ['ngAnimate'])
 
 app.controller("firstController", function($scope) {
-
+    var newPostForm = false;
     var post = [{
         title: 'Poulsbo Beach',
         image: 'https://scontent.fsnc1-5.fna.fbcdn.net/t31.0-8/14608944_10100197295091506_188077302519852923_o.jpg',
@@ -21,10 +21,28 @@ app.controller("firstController", function($scope) {
         description: 'Much class. Many wow.',
         date: '10/17/2016'
     }];
-
+    $scope.newPost={};
     $scope.post = post;
     $scope.master = {
         score: 0
     };
+    $scope.submit = function() {
+    $scope.post.push({
+        title: $scope.newPost.title,
+        image: $scope.newPost.image,
+        author: $scope.newPost.author,
+        description:$scope.newPost.description,
+        date:$scope.newPost.date
+    });
+    $scope.newPost.title = '';
+    $scope.newPost.image = '';
+    $scope.newPost.author = '';
+    $scope.newPost.description = '';
+    $scope.newPost.date = '';
+}
 
 });
+
+app.controller("comments", function ($scope) {
+
+})
