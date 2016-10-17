@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html ng-app="clone">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Reddit Clone</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body ng-controller="firstController">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+</head>
+
+<body ng-controller="firstController" style="background-size:cover; background-repeat:no-repeat; background-image:url('https://images0.estately.net/1_785941_1_1454949789_636x435.jpg')">
     <header>
-<span>Reddit Clone Project</span>
-<input type= "text" ng-model="searchbox" name="searchbox">
+        <span style="margin:5px"> Reddit Clone Project</span>
     </header>
 
+    <span style="color:white">Search <input style="margin-top:25px" type="text" ng-model="searchbox" name="searchbox"/></span>
+    <button id="newPost">Submit New Post</button>
 
-    <div ng-repeat="posts in post">
-      <h3>{{ posts.title }}</h3>
-      <h4>{{ posts.author }}</h4>
-      <img style="height: 100px; width: 150px" src= '{{ posts.image }}'/> 
-      <h4>{{ posts.date }}</h4>
+
+    <div style="margin:50px">
+        <div id="grad" ng-repeat="posts in post  | filter: searchbox" style="border: 1px solid black; margin:10px" ng-class="ng-enter">
+            <div>
+                <img ng-src='{{ posts.image }}' class=imgStyle>
+            </div>
+            <div class="panelStyle">
+                <div>
+                    <p style="font-family:cursive; font-size:20px">{{ posts.title }}
+                        <button id="upVote" ng-click="score = score + 1" ng-model="score">&#8593</button>
+                        <button id="downVote" ng-click="score = score - 1" ng-model="score">&#8595</button>
+                        <span ng-class='{aboveZero: score > 0, atZero: score === 0, belowZero: score < 0}' ng-init="score=0">{{ score }}</span>
+                    </p>
+                </div>
+                <h4> by {{ posts.author }}</h4>
+                <p>{{ posts.description }}</p>
+                <h4>published on {{ posts.date | date:'medium' }}</h4>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
     <script type="text/javascript" src="main.js"></script>
-  </body>
+
+</body>
+
 </html>
