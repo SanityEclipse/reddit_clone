@@ -1,6 +1,4 @@
-var app = angular.module("clone", ['ngAnimate'])
-
-app.controller("firstController", function($scope) {
+  app.controller("firstController", function($scope) {
     var newPostForm = false;
     var post = [{
         title: 'Poulsbo Beach',
@@ -21,28 +19,39 @@ app.controller("firstController", function($scope) {
         description: 'Much class. Many wow.',
         date: '10/17/2016'
     }];
-    $scope.newPost={};
+    $scope.newPost = {};
     $scope.post = post;
     $scope.master = {
         score: 0
     };
     $scope.submit = function() {
-    $scope.post.push({
-        title: $scope.newPost.title,
-        image: $scope.newPost.image,
-        author: $scope.newPost.author,
-        description:$scope.newPost.description,
-        date:$scope.newPost.date
-    });
-    $scope.newPost.title = '';
-    $scope.newPost.image = '';
-    $scope.newPost.author = '';
-    $scope.newPost.description = '';
-    $scope.newPost.date = '';
-}
+        $scope.post.push({
+            title: $scope.newPost.title,
+            image: $scope.newPost.image,
+            author: $scope.newPost.author,
+            description: $scope.newPost.description,
+            date: $scope.newPost.date
+        });
+        $scope.newPost.title = '';
+        $scope.newPost.image = '';
+        $scope.newPost.author = '';
+        $scope.newPost.description = '';
+        $scope.newPost.date = '';
+    }
 
 });
 
-app.controller("comments", function ($scope) {
+app.controller("comments", function($scope) {
+    var newCommentForm = false;
+    $scope.comment = [];
+    $scope.newComment = {};
 
-})
+    $scope.submit = function() {
+        $scope.comment.push({
+            author: $scope.newComment.author,
+            description: $scope.newComment.description
+        });
+        scope.newComment.author = '';
+        scope.newComment.description = '';
+    }
+});

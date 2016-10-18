@@ -1,8 +1,9 @@
 body {
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-image:url('https://images0.estately.net/1_785941_1_1454949789_636x435.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('https://images0.estately.net/1_785941_1_1454949789_636x435.jpg');
 }
+
 header {
     font-family: cursive;
     color: white;
@@ -16,7 +17,7 @@ h3 {
 }
 
 .imgStyle {
-    height: 150px;
+    height: 160px;
     width: 200px;
     border: 1px solid black;
     float: left;
@@ -45,8 +46,8 @@ h3 {
 }
 
 .commentButton {
-  font-size: 10px;
-  margin-bottom:5px; 
+    font-size: 10px;
+    margin-bottom: 5px;
 }
 
 #grad {
@@ -82,9 +83,10 @@ h3 {
     background-color: inherit;
     border-style: inherit;
 }
+
 #newForm {
-  color: white;
-  margin-top: 20px;
-  margin-right:35%;
-  margin-left:35%;
+    color: white;
+    margin-top: 20px;
+    margin-right: 35%;
+    margin-left: 35%;
 }
